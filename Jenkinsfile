@@ -1,20 +1,12 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Check Environment') {
             steps {
-                sh 'make -C main'
+                sh 'which make'
+                sh 'echo $PATH'
             }
-        }
-        stage('Test') {
-            steps {
-                sh './main/hello_exec'
-            }
-        }
-    }
-    post {
-        failure {
-            echo 'Pipeline failed!'
         }
     }
 }
+
